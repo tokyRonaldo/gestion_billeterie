@@ -1,0 +1,12 @@
+{% extends 'base.html.twig %}
+
+{% block body %}
+
+<div class="containt">
+    <form name="testForm" action="{{path('test_update',{'id',data.id})}}">
+    <input type="text" class="form-control" value="{{data.name}}">
+    <button type="submit"> envoyer </button>
+    </form>
+</div>
+
+{% endblock %}

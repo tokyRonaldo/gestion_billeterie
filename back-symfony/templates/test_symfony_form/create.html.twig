@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} create {% endblock %}
+
+{% block body %}
+<div class="containt">
+
+{{form_start(form)}}
+{{form_widget(form)}}
+<button type="submit">save</button>
+{{form_end(form)}}
+</div >
+
+{% endblock %}

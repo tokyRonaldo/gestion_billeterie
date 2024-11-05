@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.main-content {
+    flex: 1;
+    display: flex;
+}
+.sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: #343a40;
+    position: fixed;
+    height: 100vh;
+}
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+.sidebar a:hover {
+    background-color: #495057;
+    color: #fff;
+
+}
+.content {
+    flex: 1;
+    padding: 20px;
+}
+.navbar {
+    margin-bottom: 20px;
+}
+select.form-control:not([size]):not([multiple]) {
+	 height: auto !important; 
+}
+.dFsSgh{
+    min-width: auto !important;
+}
+.djUvQc div:first-child {
+	white-space: collapse !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.dropdown-menu {
+	--bs-dropdown-min-width: 115px !important;
+}
+

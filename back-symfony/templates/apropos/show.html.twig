@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Apropos{% endblock %}
+
+{% block body %}
+    <h1>Apropos</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ apropo.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ apropo.email }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ apropo.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ apropo.description }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td>{{ apropo.logo }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ apropo.image }}</td>
+            </tr>
+            <tr>
+                <th>PhoneNumber</th>
+                <td>{{ apropo.phoneNumber }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_apropos_index') }}">back to list</a>
+
+    <a href="{{ path('app_apropos_edit', {'id': apropo.id}) }}">edit</a>
+
+    {{ include('apropos/_delete_form.html.twig') }}
+{% endblock %}
