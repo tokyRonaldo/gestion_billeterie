@@ -16,11 +16,11 @@ function Footer({about}) {
                         </div>
                         <ul className="social-links-footer list-inline">
                         <li className="list-inline-item">
-                            <a ><i className="fa-brands fa-facebook"></i><span>{about.email}</span></a>
+                            <a style={{borderRadius : 3}}><i className="fa-solid fa-envelope me-1"></i><span>{about.email}</span></a>
                             
                         </li>
                         <li className="list-inline-item">
-                            <a ><i className="fa-brands fa-twitter"></i><span>{about.phoneNumber}</span></a>
+                            <a style={{borderRadius : 3}}><i className="fa-solid fa-phone me-1"></i><span>{about.phoneNumber}</span></a>
                             
                             </li>
                         </ul>

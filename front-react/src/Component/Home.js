@@ -103,7 +103,8 @@ function Home({paddingTop,about}) {
                     <div className="col-lg-3 col-md-4 col-sm-6" key={listType.id}>
                         <div className="speaker-item">
                             <div className="image">
-                                <img src={`http://localhost:8000/images/uploads/${listType.img}`} alt="speaker" className="img-fluid" />
+                               {listType.img ? <img src={`http://localhost:8000/images/uploads/${listType.img}`} alt="speaker" className="w-100 imgType" /> 
+                               : <img src={`http://localhost:8000/img/imagedefault.jpeg`} alt="speaker" className="w-100 imgType" /> }
                             </div>
                             <div className="content text-center">
                                 <h5><a href="single-speaker.html">{listType.nameType}</a></h5>
@@ -118,9 +119,9 @@ function Home({paddingTop,about}) {
         <section className="section about bg-speaker overlay-lighter">
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-4 col-md-6 align-self-center">
+                    <div className="col-lg-3 col-md-4 align-self-center">
                         <div className="image-block bg-about">
-                            <img className="img-fluid" src={`http://localhost:8000/images/uploads/${about.image}`} alt="" />
+                            <img className="d-block w-100" src={`http://localhost:8000/images/uploads/${about.image}`} alt="" />
                         </div>
                     </div>
                     <div className="col-lg-8 col-md-6 align-self-center">

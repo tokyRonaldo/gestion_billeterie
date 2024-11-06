@@ -44,8 +44,9 @@ class TypeRepository extends ServiceEntityRepository
     public function findLastThreeItems()
     {
         return $this->createQueryBuilder('t')
-        ->leftJoin('t.evenement', 'e')   // Jointure avec Evenement
-        //->addSelect('e.title, e.content') // Sélection des colonnes
+        //->leftJoin('t.id', 'e.type_id')   // Jointure avec Evenement
+        ->addSelect('t.id, t.nameType','t.description','e.img') // Sélection des colonnes
+        ->leftJoin('App\Entity\Evenement', 'e', 'WITH', 'e.type = t.id') // Jointure entre `Evenement` et `Type`
         ->orderBy('t.id', 'DESC')
             ->setMaxResults(3)
             ->getQuery()

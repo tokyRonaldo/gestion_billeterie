@@ -42,7 +42,9 @@ const getAbout= async () =>{
   )
   .then((item) =>{
       const data= item.data;
+      if(data != null){
       setAbout(data)
+      }
   }).catch((error) =>{
       console.log(error);
   })
