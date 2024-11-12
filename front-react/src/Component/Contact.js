@@ -46,14 +46,15 @@ function Contact({paddingTop}) {
     }
         return (
             <div>  
+
                 <section className="page-title bg-title overlay-dark">
                     <div className="container">
-                        <div className="row">
-                            <div className="col-12 text-center">
+                        <div className="row text-center">
+                            <div className="col-12 text-center col">
                                 <div className="title">
                                     <h3>Contacts</h3>
                                 </div>
-                                <ol className="breadcrumb p-0 m-0">
+                                <ol className="breadcrumb p-0 m-0 text-center">
                                 <li className="breadcrumb-item"><a href="#">Home</a></li>
                                 <li className="breadcrumb-item active">Contacts</li>
                                 </ol>
@@ -91,27 +92,6 @@ function Contact({paddingTop}) {
                         </form>
                     </div>
                 </section>
-
-
-
-
-                <section className="section contacts">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-12">
-                                <div className="section-title">
-                                    <h3><span className="alternate">Contact</span></h3>
-                                    <div className="row d-flex ">
-                                    <div className="d-flex justify-content-center">
-                                    <span className="pr-3"><i className="fa-brands fa-facebook fa-lg"></i></span><h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, velit.</h5>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
 
             </div>  
         )}

@@ -469,6 +469,10 @@ select.form-control:not([size]):not([multiple]) {
   overflow: hidden;
 }
 
+.sectionEvents {
+  padding: 10px 0 !important;
+}
+
 .mfp-with-zoom .mfp-container,
 .mfp-with-zoom.mfp-bg {
   opacity: 0;

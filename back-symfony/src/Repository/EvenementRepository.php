@@ -65,10 +65,36 @@ class EvenementRepository extends ServiceEntityRepository
         public function getEventsType($type){
             
             return $this->createQueryBuilder('e')
+            ->join('e.type', 't') // Assure-toi que la relation entre Evenement et Type est bien configurée
+                ->addSelect('t.nameType','e.id','e.name','e.img','e.description','e.date','e.organisateur')
+
             ->andWhere('e.type =:type')
             ->setParameter('type' ,$type)
             ->getQuery()
             ->getResult();
         }
+
+        // src/Repository/EvenementRepository.php
+        public function findEventsGroupedByType()
+        {
+            $qb = $this->createQueryBuilder('e')
+                ->join('e.type', 't') // Assure-toi que la relation entre Evenement et Type est bien configurée
+                //->addSelect('t','e')
+                ->orderBy('t.nameType', 'ASC') // Ordonner par type si nécessaire
+                ->getQuery();
+
+            $events = $qb->getResult();
+
+            // Regrouper par type
+            $groupedEvents = [];
+            foreach ($events as $event) {
+                $typeName = $event->getType()->getNameType(); // Suppose que `getName()` retourne le nom du type
+                //$typeId = $event->getType()->getId(); // Suppose que `getName()` retourne le nom du type
+                $groupedEvents[$typeName][] = $event;
+            }
+
+            return $groupedEvents;
+        }
+
         
 }

@@ -32,4 +32,19 @@ class EvenementController extends AbstractController
         return new JsonResponse($json, 200, [], true);
     }
 
+    #[Route('/api/events/withType',name:'getEventsWithType')]
+    public function getEventsWithType(EvenementRepository $eventRepository,SerializerInterface $serializer){
+        $groupedEvents = $eventRepository->findEventsGroupedByType();
+        $eventsByType = [];
+        foreach ($groupedEvents as $type => $events) {
+            $eventsByType[] = [
+                'type' => $type,
+                'events' => $events
+            ];
+        }
+
+        $json = $serializer->serialize($eventsByType, 'json');
+        return new JsonResponse($json,200, [], true);
+    }
+
 }

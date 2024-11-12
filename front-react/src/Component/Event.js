@@ -1,5 +1,5 @@
 import React, { Component, useState,useEffect} from "react";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import imgHome from '../images/background/homepage-one-banner.jpg'
@@ -7,19 +7,24 @@ import imgType from '../images/speakers/speaker-one.jpg'
 
 function Event({paddingTop}) {
     const [listEvents,setListEvents] = useState([])
-
+console.log('ici');
     const { type } = useParams();
+    const location = useLocation();
+    console.log(type)
 
     useEffect(() => {
+        console.log(type)
+        console.log('eto le type  eeee')
         if(type){
+            
             getListEventsWithType();
         }else{
             getListEvents()
         }
-        }, []);
+        }, [location.pathname,location.key,type]);
     
 
-    const apiGetListEvents='http://localhost:8000/api/evenements';
+    const apiGetListEvents='http://localhost:8000/api/events/withType';
     const apiGetListEventsWithType=`http://localhost:8000/api/type/events/${type}`;
 
     const getListEvents= async () =>{
@@ -31,7 +36,7 @@ function Event({paddingTop}) {
                  }   
               }
         ).then((item) =>{
-            const data= item.data['hydra:member'];
+            const data= item.data;
             setListEvents(data)
             console.log(data)
             console.log('events')
@@ -78,38 +83,77 @@ function Event({paddingTop}) {
                     </div>
                 </section>
 
-                <section className="section about">
-                    <div className="container">
-                        {listEvents.map((listEvent) => (
+                <section className="section sectionEvents" >
+                    {type ? ( 
+                        <div className="container">
+                                    <h3>{listEvents[0] ? listEvents[0].nameType : ''}</h3>
+                                    {listEvents.map((Event) => (
 
-                            <div className="row" key={listEvent.id}>
-                                <div className="col-lg-4 col-md-6 align-self-center">
-                                    <div className="image-block bg-about">
-                                        <img className="img-fluid" src={`http://localhost:8000/images/uploads/${listEvent.img}`} alt="" />
-                                    </div>
-                                </div>
-                                <div className="col-lg-8 col-md-6 align-self-center">
-                                    <div className="content-block">
-                                        <h2>{listEvent.name}</h2>
-                                        <div className="description-one">
-                                            <p>
-                                                {listEvent.description}
-                                            </p>
+                                        <div className="row my-2" key={Event.id}>
+                                            <div className="col-lg-4 col-md-6 align-self-center">
+                                                <div className="image-block bg-about">
+                                                    <img className="w-100" src={`http://localhost:8000/images/uploads/${Event.img}`} alt="" />
+                                                </div>
+                                            </div>
+                                            <div className="col-lg-8 col-md-6 align-self-center">
+                                                <div className="content-block">
+                                                    <h2>{Event.name}</h2>
+                                                    <div className="description-one">
+                                                        <p>
+                                                            {Event.description}
+                                                        </p>
+                                                    </div>
+                                                    <ul className="list-inline">
+                                                        <li className="list-inline-item">
+                                                            <a href="#" className="btn btn-main-md">Buy ticket</a>
+                                                        </li>
+                                                        <li className="list-inline-item">
+                                                            <a href="#" className="btn btn-transparent-md">Read more</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <ul className="list-inline">
-                                            <li className="list-inline-item">
-                                                <a href="#" className="btn btn-main-md">Buy ticket</a>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <a href="#" className="btn btn-transparent-md">Read more</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    ))}
                                 </div>
+                            
+                    ) : ( <div className="container">
+                        {listEvents.map((listEvent) => (
+                            <div key={listEvent.type} className="my-3">
+                                <h3>{listEvent.type}</h3>
+                                {listEvent.events ? listEvent.events.map((Event) => (
+
+                                    <div className="row my-2" key={Event.id}>
+                                        <div className="col-lg-4 col-md-6 align-self-center">
+                                            <div className="image-block bg-about">
+                                                <img className="w-100" src={`http://localhost:8000/images/uploads/${Event.img}`} alt="" />
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-8 col-md-6 align-self-center">
+                                            <div className="content-block">
+                                                <h2>{Event.name}</h2>
+                                                <div className="description-one">
+                                                    <p>
+                                                        {Event.description}
+                                                    </p>
+                                                </div>
+                                                <ul className="list-inline">
+                                                    <li className="list-inline-item">
+                                                        <a href="#" className="btn btn-main-md">Buy ticket</a>
+                                                    </li>
+                                                    <li className="list-inline-item">
+                                                        <a href="#" className="btn btn-transparent-md">Read more</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )) : ''}
                             </div>
                         ))}
                         
                     </div>
+                )}
                 </section>
 
 

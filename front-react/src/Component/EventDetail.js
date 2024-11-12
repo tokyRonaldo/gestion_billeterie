@@ -24,7 +24,7 @@ function EventDetail({paddingTop}) {
                  }   
               }
         ).then((item) =>{
-            const data= item.data['hydra:member'];
+            const data= item.data;
             setEvent(data)
             console.log(data)
             console.log('event')
@@ -51,7 +51,7 @@ function EventDetail({paddingTop}) {
                     </div>
                 </section>
 
-                <section className="about" style={{padding: 60}}>
+                <section className="section" style={{padding: 60}}>
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12 col-md-12 align-self-center">

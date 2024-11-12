@@ -11,7 +11,7 @@ import About from '../Component/About';
 import axios from 'axios';
 
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router,Link , Route, Routes } from 'react-router-dom';
 
 function AppWeb() {
   const [paddingTop, setPaddingTop] = useState(0);
@@ -20,17 +20,16 @@ function AppWeb() {
 useEffect(() => {
   adjustPadding()
   getAbout();
-
   
-})
+}, [])
 
 const adjustPadding = () => {
   const navbarHeight = document.getElementById('navbar').offsetHeight;
   setPaddingTop(navbarHeight);
-  console.log(navbarHeight);
 };
 
 const apiGetAbout='http://localhost:8000/one_apropos'
+
 const getAbout= async () =>{
   const response= await axios.get(apiGetAbout,
       {
@@ -49,6 +48,7 @@ const getAbout= async () =>{
       console.log(error);
   })
 }
+
 
 
 // Ajuster le padding-top au chargement de la page
@@ -92,9 +92,10 @@ window.removeEventListener('resize', adjustPadding);
           <Route path="/contact" element={<Contact />} />
           <Route path="/type/:id" element={<Events />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/events/:type" element={<Events />} />
           <Route path="/panier" element={<Panier />} />
           <Route path="/payment" element={<Payment />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About about={about} />} />
           <Route path="/event/:id" element={<EventDetail />} />
         </Routes>
     </div>
